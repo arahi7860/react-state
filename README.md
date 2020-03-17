@@ -27,38 +27,9 @@ price: 6.99
 
 Now our view of our shopping cart will change, based on the data or the `state` of the shopping cart.
 
-### Set Up
+### Objective
 Let's build a tiny online store and render the items available to us.
 
-- `mkdir react_state_store`
-- `cd react_state_store `
-- `touch app.js index.html`
-- `cp ./../data.js  .`
-- set up your html boilerplate and add all the React script tags
-- link the `data.js` file above `app.js` (both below the React script tags)
-- add a `div` with a class of `container` where we'll render our react
-- test that you can see your data with `console.table(products)` on the first line in `app.js`
-
-<!--
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>React State Store</title>
-  </head>
-  <body>
-    <div class="container">
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.3.2/umd/react.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.3.2/umd/react-dom.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
-    <script type="text/babel" src="data.js"></script>
-    <script type="text/babel" src="app.js"></script>
-  </body>
-</html>
--->
-
-<!--SEI1 5:38 after questions -->
 
 ## Render a list
 

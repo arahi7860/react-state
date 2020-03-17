@@ -67,6 +67,8 @@ However, in the case of our online store, we'll want a list based on our data, s
 `state` is a special key word in react. In order to use it, we used to have to set up a `constructor` function, like we did in Unit 1.
 
 ```js
+import React, {useSate} from 'react'
+
 function App() {
   const [produucts, setProducts] = useState([]) 
     return (

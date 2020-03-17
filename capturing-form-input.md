@@ -1,0 +1,251 @@
+# React State
+
+<!--SEI1 6:21 -->
+
+## Learning Objectives
+ - Learn about state and forms
+ - Learn how to update state
+ - Learn how to make one source of truth
+ - Learn about events and use onChange and submit
+
+## Form Inputs / Controlled Components
+
+HTML elements, like `input`, maintain their own state (this is their default behavior as just plain HTML: as you enter or delete characters in an input you see those characters change).
+
+We'll need to give React control over our inputs, so that React's `state` will maintain the state of our inputs. That way there is one source of truth for our data (React `state`).
+
+ Let's add an `input` to our application from the previous lesson:
+
+ ```js
+   return (
+     <div>
+     <h1> Big Time Shopping </h1>
+     <form>
+      <input type="text" />
+     </form>
+     <ul>
+       {
+         products.map(product =>
+           <li>{product.name} | {product.price} | {product.description}</li>
+         )
+       }
+     </ul>
+     </div>
+   )
+
+```
+
+We can still type into this field, but we need to connect it to React.
+
+Let's expand state to hold our input value
+
+```js
+const [products, setProducts] = useState([])
+const [value, setValue] = useState('')
+
+```
+
+Now let's tie it into our input
+
+```js
+  return (
+    <div>
+    <h1> Big Time Shopping </h1>
+    <form>
+      <input type="text" value={value}/>
+    </form>
+    <ul>
+      {
+        products.map(product =>
+          <li>{product.name} | {product.price} | {product.description}</li>
+        )
+      }
+    </ul>
+    </div>
+  )
+```
+
+If we've done it right, we won't be able to type in our form: We have set the state of the input field's value to be an empty string and currently we have no way of updating it.
+
+React is optimized to only re-render elements that have changed/been updated. That is one its key features. We don't update state directly, rather, we use a function called `setState` to update state.
+
+Let's code it out.
+
+We'll add a function that allows us to update the state of our input
+
+```js
+function App(){
+  const [products, setProducts] = useState([])
+  const [value, setValue] = useState('')
+
+  const handleChange = (event) => {
+    console.log(event.target.value)
+  }
+
+```
+
+And we'll call that function using the `onChange` event (we covered event listeners/handlers in unit 1 with vanilla js/jQuery - the syntax is a little different but the principals are the same).  One of the most common is `onClick`, but there are others that listen for mouse over, key up, key down, or form submission.
+
+```js
+  return (
+    <div>
+    <h1> Big Time Shopping </h1>
+    <form>
+      <input type="text" value={value} onChange={handleChange}/>
+    </form>
+    // ...
+```
+
+Now we can see the letters we type log in the console. They still are not updating in the input field.
+
+So you must update it using the `setState` built-in function. This edits the property in `state`, but also triggers `render` again to update the view.
+
+```js
+handleChange = (event) => {
+  console.log(event.target.value)
+  setValue(event.target.value) 
+}
+```
+
+
+And now our input box should update!
+
+<!--SEI1 6:36 after questions -->
+
+### Updating more than one input field
+
+It's very likely that our app will have more than one input field. We could write a `handleChange` function for every field. But that seems like a lot of work.
+
+What would be better would be to follow the proper guidelines for creating inputs.[ Which is to use `label` elements.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) Creating forms properly, by including labels and possibly [fieldsets](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset), helps improve accessibility - especially in the case of screen readers.
+
+[React and Web Accessibility](https://reactjs.org/docs/accessibility.html)
+
+When we properly update our HTML with labels, we'll also end up with each input having an `id`. We can match this `id` to the matching key in `state` and this will then make updating our `input` fields much easier.
+
+Keeping track of just `value` doesn't really help our store. Let's add the ability to edit a product's properties:
+
+```js
+  const [products, setProducts] = useState([])
+  const [value, setValue] = useState('')
+  const [price, setPrice] = useState(0)
+  const [description, setDescription] = useState('')
+```
+
+Now, let's add a label element with the attribute `htmlFor` - the value will match the key for the input. **Note** just like `class` is a reserved word in JavaScript, so is `for`. So we have to use the React syntax (camelCase) for the attribute, which will then get rendered into the proper attribute in the HTML.
+
+Then, in the input element, we'll add an `id` that will match the `for` value.
+
+Let's update our product name first:
+
+```html
+<h1> Big Time Shopping </h1>
+<form>
+  <label htmlFor="name"></label>
+  <input type="text" value={name} onChange={handleChange} id="name"/>
+</form>
+  <ul>
+```
+
+One more step. Let's update our `handleChange` function in order to restore the functionality
+
+```js
+handleChange = (event) => {
+  setValue(event.target.value)
+}
+```
+
+<!--SEI1 6:45 -->
+
+### Add more fields
+
+Adding more fields should now be a snap! This is pretty typical for React in that it takes a lot of set up to do simple things, but once you have a good base, it's much easier to build on top of it.
+
+Let's add inputs for price and description:
+
+```html
+<form>
+  <label htmlFor="name">Name</label>
+  <input type="text" value={name} onChange={handleChange} id="name" />
+  <br />
+  <label htmlFor="price">Price</label>
+  <input type="number" value={price} onChange={handleChange} id="price" />
+  <br />
+  <label htmlFor="description">Description</label>
+  <input type="textarea" value={description} onChange={handleChange} id="description" />
+  <br />
+  <input type="submit" />
+</form>
+```
+
+### Preview and then submit
+
+To demonstrate state and rendering, we'll make a little preview box. Let's put this after our last input and before the start of our `ul`
+
+```html
+<div>
+  <h2>Preview our new item</h2>
+  <h3>Name: {name}</h3>
+  <h4>Price: {price}</h4>
+  <h5>Description: {description}</h5>
+</div>
+```
+
+Take some time to make sure that as you update each input field, each preview gets properly updated as well.
+
+When we are ready, we'd like to submit this new item and see its name, price, and description show up in our list.
+
+### Add a new item
+
+Once we are happy with our new item, we want to submit it.
+
+Upon submission, we'll add our new item object into our array of products.
+
+Remember, form submits, by default, refresh the page. So the first thing we'll have to do is add an event listener for the submit event. Then we'll prevent the default behavior.
+
+```html
+  <form onSubmit={handleSubmit}>
+```
+
+```js
+const handleSubmit = (event) => {
+  event.preventDefault()
+  console.log('you prevented the default');
+}
+```
+
+You should see your `console.log` and it should stay. If you see it for a moment and it disappears, then you have not yet prevented the default behavior of submit.
+
+<!--SEI1 6:58 -->
+
+We'll make a new object with the correct structure for our products array. Then we'll add it to our array using ES6 syntax, rather than using a method like `push`, as recommended in [the official React documentation](https://reactjs.org/docs/optimizing-performance.html#the-power-of-not-mutating-data)
+
+```js
+const handleSubmit = (event) => {
+  event.preventDefault()
+  const newItem = {
+    name: this.state.name,
+    price: this.state.price,
+    description: this.state.description
+  }
+  setProducts([...products, newItem])
+}
+```
+
+### One More Nice Touch
+It would be nice to have the form reset once we have submitted our new item
+```js
+const handleSubmit = (event) => {
+  event.preventDefault()
+  const newItem = {
+    name: this.state.name,
+    price: this.state.price,
+    description: this.state.description
+  }
+  setProducts([...products, newItem])
+  setName('')
+  setPrice(0)
+  setDescription('')
+}
+```
+
+<!--SEI1 7:07 -->

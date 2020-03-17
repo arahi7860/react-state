@@ -44,14 +44,12 @@ Let's set up our React app first.
 **app.js**
 
 ```js
-class App extends React.Component {
-  render () {
+function App() {
     return (
       <div>
         <h1> Big Time Shopping </h1>
       </div>
     )
-  }
 }
 
 ReactDOM.render(
@@ -69,39 +67,13 @@ However, in the case of our online store, we'll want a list based on our data, s
 `state` is a special key word in react. In order to use it, we used to have to set up a `constructor` function, like we did in Unit 1.
 
 ```js
-class App extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      products: products
-    }
-  }
-  render () {
+function App() {
+  const [produucts, setProducts] = useState([]) 
     return (
       <div>
         <h1> Big Time Shopping </h1>
       </div>
     )
-  }
-}
-```
-
->**Note:** You do not need to add the above code to your app, but keep it in mind because you may see this syntax in Stack Overflow.
-
-Thanks to improvements in recent versions of JS and React, though, we can just do the following now:
-
-```js
-class App extends React.Component {
-  state = {
-    products
-  }
-  render () {
-    return (
-      <div>
-        <h1> Big Time Shopping </h1>
-      </div>
-    )
-  }
 }
 ```
 
@@ -114,37 +86,33 @@ Inside the `return` of `render()` function is special. The syntax that is recogn
 Much like we did in unit 2, we can embed our data in the html. Let's put the first product in there for rendering. We have to wrap any JS we want to render in curlies `{}`.
 
 ```js
-render () {
   return (
     <div>
       <h1> Big Time Shopping </h1>
-      {this.state.products[0].name}
+      {products[0].name}
     </div>
   )
-}
 ```
 We should see the allen wrench show up.
 
-Unlike EJS (or handlebars), we can't write for loops here. But what we can use is the `.map` function. `.map` will iterate over every item, manipulate it in some way, and return the new array.
+We can use is the `.map` function. `.map` will iterate over every item, manipulate it in some way, and return the new array.
 
 In our case, we want to make an unordered list:
 
 
 ```js
-render () {
   return (
     <div>
       <h1> Big Time Shopping </h1>
       <ul>
         {
-          this.state.products.map(product => {
+          products.map(product => {
             return <li>{product.name}</li>
           })
         }
       </ul>
     </div>
   )
-}
 ```
 
 <!--SEI1 5:54 after questions -->
@@ -152,20 +120,18 @@ render () {
 With ES6, if our function is one line of code (and no more), we can skip the curly braces after the arrow and we can skip the return statement - it will implicitly return the one line.
 
 ```js
-render () {
   return (
     <div>
       <h1> Big Time Shopping </h1>
       <ul>
         {
-          this.state.products.map(product =>
+          products.map(product =>
             <li>{product.name}</li>
           )
         }
       </ul>
     </div>
   )
-}
 ```
 
 In our case, we may also want to show the price, so let's update our code:

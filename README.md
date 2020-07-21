@@ -1,6 +1,6 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# React Components Part 2: Class Components
+# React Components Part 2: React State
 
 We've already seen how to define components using functions. Most of the
 components you define will be function components like this because they'll be

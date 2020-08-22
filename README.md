@@ -238,12 +238,6 @@ When we click the `+` button, the `increment` function is called, which executes
 const [count, setCount] = useState(0) /* same as before, except useState will return an updated count */
 ```
 
-## Shopping Cart
-
-1. Copy the data in the `data.js` file of this repository.
-2. Create a component that renders all of the items in the data.
-3. Create a form to add a new item to the cart.
-
 ## Closing
 
 If asked, could you explain the differences between props and state? We've now

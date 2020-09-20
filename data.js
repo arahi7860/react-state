@@ -99,4 +99,6 @@ const products = [
         "price": 1.99,
         "description": "You'll get 'stuck' on it"
       },
-    ]
+    ];
+
+export default products;

@@ -1,6 +1,6 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# React Components Part 2: React State
+# React State
 
 We've already seen how to define components using functions. Most of the
 components you define will be function components like this because they'll be
@@ -19,6 +19,7 @@ By the end of this, developers should be able to:
 - Review passing data to a React component via `props`
 - Define and use nested components
 - Identify `state` in a React app
+- Utilize the `useState` hook to create `state`
 - Modify the `state` of a React component through events
 - Distinguish container and presentational components
 
@@ -127,20 +128,11 @@ So what do we do with data we want to control from within a component?
 The limitation of props is that we can't change the data from within the
 component. The data that we can change within a component is called
 **[state](https://facebook.github.io/react/docs/state-and-lifecycle.html)**.
-While we haven't talked about state yet, you have worked with it before! Your
-project 4s all tracked some state, regardless of which game you built:
-
-- **Trivia**: what is the current score, what card is currently displayed to the
-  user, is the user's input correct or incorrect?
-- **Simon**: what order of buttons did the user push, what is the order of
-  buttons they were supposed to push, what round or level are they on?
-- **Tower of Hanoi**: how many discs are in each tower, how many moves has the
-  user made?
+While we haven't talked about state yet, you have worked with it before! In Unit 1's High-Low Card Game, we stored the deck and mutated it only through specific methods.
 
 We can figure out the `state` of a turn-based game because there is a clear idea
 of a beginning and end and states that reflect progress from one turn to the
-next turn: what flash card is the user on, what buttons do they need to push,
-how are the discs distributed among the three towers.
+next turn: what flash card is the user on (Simon Says), how are the discs distributed among the three towers (Towers of Hanoi), or even whose turn it is (Uno).
 
 <details>
   <summary>Q: So we know an application can have different states. But how do we transition in between them?</summary>
@@ -152,9 +144,7 @@ how are the discs distributed among the three towers.
 ### State and Rendering
 
 Before moving on to build our application, it's worth mentioning another aspect
-of component `state`: when it changes, our components re-render:
-
-![](./images/react-component-state-update.png)
+of component `state`: when it changes, our components re-render.
 
 Our UI gets updated when state changes. The user takes some action, like
 submitting information via a form, and the component holding that form has a
@@ -247,12 +237,6 @@ When we click the `+` button, the `increment` function is called, which executes
 ```js
 const [count, setCount] = useState(0) /* same as before, except useState will return an updated count */
 ```
-
-## Shopping Cart
-
-1. Copy the data in the `data.js` file of this repository.
-2. Create a component that renders all of the items in the data.
-3. Create a form to add a new item to the cart.
 
 ## Closing
 

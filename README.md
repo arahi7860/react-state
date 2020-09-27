@@ -63,9 +63,6 @@ ReactDOM.render(
 `App.js`
 
 ```jsx
-import React from "react";
-import Hello from "./Hello.js";
-
 import React from 'react';
 import Hello from './Hello'
 

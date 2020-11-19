@@ -78,6 +78,8 @@ function Hello(props) {
     </div>
   );
 }
+
+export default Hello;
 ```
 
 Here we are passing values, `"Nick"` and `24` into our first `Hello` component

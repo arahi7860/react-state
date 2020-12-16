@@ -49,22 +49,12 @@ Data that is passed into one component by a parent component (or the application
 root), we refer to as `props`.
 
 Lets take a look at two components.
-`index.js`
-```jsx
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App.js";
 
-ReactDOM.render(
-  <App/>,
-  document.getElementById("root")
-);
-```
 `App.js`
 
 ```jsx
 import React from 'react';
-import Hello from './Hello'
+import Hello from './Hello';
 
 function App() {
   return (
@@ -77,9 +67,8 @@ function App() {
 export default App;
 ```
 
-
-```js
-// Hello.js
+`Hello.jsx`
+```jsx
 function Hello(props) {
   return (
     <div>
@@ -89,6 +78,8 @@ function Hello(props) {
     </div>
   );
 }
+
+export default Hello;
 ```
 
 Here we are passing values, `"Nick"` and `24` into our first `Hello` component
@@ -96,7 +87,7 @@ in `App.js`, where we are **composing** `Hello` with the JSX expression,
 `<Hello name={"Nick"} age={24} />`.
 
 Any values that we pass into a component are called `props`. Inside of the
-component we refer to them as `props`
+component we refer to them as `props`.
 
 Props are one of the things that make React so powerful and help us make
 **independent** and **reusable** components. We can pass different data to our
@@ -124,7 +115,7 @@ So what do we do with data we want to control from within a component?
 
 The limitation of props is that we can't change the data from within the
 component. The data that we can change within a component is called
-**[state](https://facebook.github.io/react/docs/state-and-lifecycle.html)**.
+**[state](https://reactjs.org/docs/state-and-lifecycle.html)**.
 While we haven't talked about state yet, you have worked with it before! In Unit 1's High-Low Card Game, we stored the deck and mutated it only through specific methods.
 
 We can figure out the `state` of a turn-based game because there is a clear idea
@@ -155,7 +146,7 @@ submitting information via a form, and the component holding that form has a
 
 <details>
 <summary>Solution</summary>
-- State is mutable and is designed to be passed to and from components and allows you to share information</br></br>
+- State is mutable and is designed to be passed to and from components and allows you to share information</br>
 - To store information that is specific to a component and that you don't intend to change </br>
 </details>
 

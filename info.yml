@@ -4,7 +4,9 @@
 
 unit: 2
 
-section: react
+section: react-state
+
+notes: intro to state and forms
 
 type: lesson
 

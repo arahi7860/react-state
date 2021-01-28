@@ -53,7 +53,6 @@ Lets take a look at two components.
 `App.js`
 
 ```jsx
-import React from 'react';
 import Hello from './Hello';
 
 function App() {

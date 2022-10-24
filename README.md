@@ -90,7 +90,7 @@ component we refer to them as `props`.
 
 Props are one of the things that make React so powerful and help us make
 **independent** and **reusable** components. We can pass different data to our
-`Hello` component and easily get the same html and css but with different data:
+`Hello` component and easily get the same HTML and CSS but with different data:
 
 ```jsx
 function App() {
@@ -115,11 +115,15 @@ So what do we do with data we want to control from within a component?
 The limitation of props is that we can't change the data from within the
 component. The data that we can change within a component is called
 **[state](https://reactjs.org/docs/state-and-lifecycle.html)**.
-While we haven't talked about state yet, you have worked with it before! In Unit 1's High-Low Card Game, we stored the deck and mutated it only through specific methods.
+
+But what exactly do we mean when we say `state`? For a clear example, think
+about how a board game or card game is played. 
 
 We can figure out the `state` of a turn-based game because there is a clear idea
 of a beginning and end and states that reflect progress from one turn to the
 next turn: what flash card is the user on (Simon Says), how are the discs distributed among the three towers (Towers of Hanoi), or even whose turn it is (Uno).
+
+In short, `state` is how things are at any given moment.
 
 <details>
   <summary>Q: So we know an application can have different states. But how do we transition in between them?</summary>
